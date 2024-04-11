@@ -15,5 +15,33 @@
     <script th:src="@{/Semantic-UI-CSS-master/semantic.min.js}"></script>
 </head>
 <body>
+<div id="entete">
+    <div class="ui menu">
+        <a class="item" th:href="@{/}">
+            <i class="home icon"></i> Accueil
+        </a>
+        <a class="item" th:href="@{/creer}">
+            <i class="plus icon"></i> Créer
+        </a>
+        <a class="item" th:href="@{/rechercher}">
+            <i class="search icon"></i> Rechercher
+        </a>
+        <a class="item" th:href="@{/festivals}">
+            <i class="list icon"></i> Festivals
+        </a>
+        <a class="item" th:href="@{/spectacles}">
+            <i class="list icon"></i> Spectacles
+        </a>
 
-<div id="app">
+        <div class="right menu">
+            <a class="item" th:href="@{/user}">
+                <i class="user icon"></i> Utilisateurs
+            </a>
+            <a class="red item" th:href="@{/deconnexion}">
+                <i class="sign-out icon"></i> Se d&eacute;connecter
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="app" class="ui container">
