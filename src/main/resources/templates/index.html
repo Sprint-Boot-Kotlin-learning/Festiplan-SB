@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-    </head>
-    <body>
-Coucou
-    </body>
-</html>
+    <div th:replace="/components/views/Header :: header('Accueil', '')"></div>
+    <div th:replace="/components/views/Header :: #entete"></div>
+    <div th:replace="/components/views/Header :: #app"></div>
+
+    <div class="ui container">
+        <h1>Accueil</h1>
+        <h2>Bienvue <span th:text="${user.getFullName()}"></span></h2>
+    </div>
+
+    <div th:replace="/components/views/Footer"></div>
