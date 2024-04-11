@@ -1,0 +1,19 @@
+<head th:fragment="header(title, css)">
+    <meta charset="UTF-8">
+    <title th:text="${title ?: 'tab.title'}">tab.title</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{ '/css/' + ${css ?: 'global'} + '.css' }"/>
+    <link rel="stylesheet" th:href="@{ '/Semantic-UI-CSS-master/semantic.min.css' }"/>
+
+    <!--Script-->
+
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script th:src="@{/Semantic-UI-CSS-master/semantic.min.js}"></script>
+</head>
+<body>
+
+<div id="app">

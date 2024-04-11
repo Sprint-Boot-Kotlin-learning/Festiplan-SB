@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <div th:replace="/components/views/Header :: header('Connexion', 'login')"></div>
+    <div th:replace="/components/views/Header :: #app"></div>
+    <h1>Login</h1>
+
+    <div th:if="${erreur}" class="ui error message">
+        <div class="header">Erreur</div>
+        <p th:text="${erreur}"></p>
+    </div>
+    <form action="/login" method="post">
+        <label for="username">Nom d'utilisateur</label>
+        <div class="ui input">
+            <input type="text"
+                   placeholder="Nom d'utilisateur"
+                   id="username"
+                   name="username"
+                   th:value="${username}"
+            >
+        </div>
+        <label for="password">Mot de passe</label>
+        <div class="ui input">
+            <input type="password"
+                   placeholder="Mot de passe"
+                   id="password"
+                   name="password"
+                   th:value="${password}"
+            >
+        </div>
+        <button type="submit">Se connecter</button>
+    </form>
+    <div th:replace="/components/views/Footer"></div>
