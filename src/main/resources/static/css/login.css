@@ -1,16 +1,29 @@
-form {
-    display: flex;
-    flex-direction: column;
-}
+body > .ui.container {
+    margin-top: 3em;
+    padding: 2em 0;
 
-#app {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 75vh;
-    margin: 5% 30%;
+    justify-content: center;
 
     background-color: #F7A072;
     border-radius: 10px;
+}
+
+
+.ui.container > h1 {
+    font-size: 3em;
+    text-align: center;
+    font-weight: normal;
+}
+
+form {
+    margin-top: 2em;
+    width: 80%;
+}
+
+#createCompte {
+    display: flex;
+    justify-content: center;
 }
