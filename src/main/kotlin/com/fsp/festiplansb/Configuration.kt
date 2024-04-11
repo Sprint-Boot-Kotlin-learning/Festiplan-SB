@@ -16,7 +16,7 @@ class Configuration {
         userRepository.save(
             FestiplanUser(
                 id = 1L,
-                firstname = "Françosi",
+                firstname = "François",
                 lastname = "de Saint Palais",
                 login = Username("login"),
                 password = Password("mdp12345"),

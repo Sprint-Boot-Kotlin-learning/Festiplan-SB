@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <div th:replace="~{/components/views/Header :: header('Création de compte', 'createAccount')}"></div>
+    <div th:replace="~{/components/views/Header :: #app}"></div>
+
+    <!--JS-->
+    <script src="/js/createAccount.js" defer></script>
+
+    <h1>Cr&eacute;ation de compte</h1>
+
+    <form class="ui large form" action="createAccount" method="post">
+        <div class="ui stacked segment">
+            <div class="two fields">
+                <div class="required field">
+                    <label for="nom">Nom</label>
+                    <div class="ui input">
+                        <input type="text"
+                               name="nom"
+                               id="nom"
+                               placeholder="Nom"
+                               th:value="${nom}"
+                        >
+                    </div>
+                </div>
+
+                <div class="required field">
+                    <label for="prenom">Pr&eacute;nom</label>
+                    <div class="ui input">
+                        <input type="text"
+                               name="prenom"
+                               id="prenom"
+                               placeholder="Prénom"
+                               th:value="${prenom}"
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="required field">
+                <label for="email">Adresse email</label>
+                <div class="ui left icon input">
+                    <i class="mail icon"></i>
+                    <input type="email"
+                           name="email"
+                           id="email"
+                           placeholder="Adresse email"
+                           th:value="${email}"
+                    >
+                </div>
+            </div>
+
+            <div class="required field">
+                <label for="username">Nom d'utilisateur</label>
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text"
+                           name="username"
+                           id="username"
+                           placeholder="Nom d'utilisateur"
+                           th:value="${username}"
+                    >
+                </div>
+            </div>
+
+            <div class="required field">
+                <label for="MDP">Mot de passe</label>
+                <div class="ui left icon action input">
+                    <i class="lock icon"></i>
+                    <input type="password"
+                           name="password"
+                           id="MDP"
+                           placeholder="Mot de passe"
+                           th:value="${password}"
+                    >
+                    <div class="ui icon button" id="btnMDP">
+                        <i class="eye icon"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="required field">
+                <label for="confirmerMDP">Confirmer le mot de passe</label>
+                <div class="ui left icon action input">
+                    <i class="lock icon"></i>
+                    <input type="password"
+                           name="password2"
+                           id="confirmerMDP"
+                           placeholder="Confirmer le mot de passe"
+                           th:value="${password2}"
+                    >
+                    <div class="ui icon button" id="btnConfirmerMDP">
+                        <i class="eye icon"></i>
+                    </div>
+                </div>
+            </div>
+            <button class="ui fluid large submit button" type="submit">Créer un compte</button>
+        </div>
+
+    </form>
+    <div th:if="${erreurs}" class="ui error message visible">
+        <div class="header">Erreur</div>
+        <ul>
+            <li th:each="erreur : ${erreurs}" th:text="${erreur}"></li>
+        </ul>
+    </div>
+
+    <div th:replace="~{/components/views/Footer}"></div>
