@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <div th:replace="~{/components/views/Header :: header('Modifier', '')}"></div>
+    <div th:replace="~{/components/views/Header :: #entete}"></div>
+
+    <div class="ui center container">
+        <h1>Modifier le festival &quot;<span th:text="${festival.nom}">Festival</span>&quot;</h1>
+
+        <div class="ui center segment">
+            <form class="ui form" th:action="@{/festivals/modifier}" method="post" th:object="${festival}">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="field required">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" th:field="*{nom}"/>
+                </div>
+                <div class="field">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" th:field="*{description}"></textarea>
+                </div>
+                <div class="two fields">
+                    <div class="field required">
+                        <label for="dateDebut">Date de d&eacute;but</label>
+                        <input type="date" id="dateDebut" name="dateDebut" th:value="${#temporals.format(festival.dateDebut, 'yyyy-MM-dd')}"/>
+                    </div>
+                    <div class="field required">
+                        <label for="dateFin">Date de fin</label>
+                        <input type="date" id="dateFin" name="dateFin" th:value="${#temporals.format(festival.dateFin, 'yyyy-MM-dd')}"/>
+                    </div>
+                </div>
+                <div class="field required">
+                    <label for="categorie">Catégorie</label>
+                    <select id="categorie" name="categorie">
+                        <option value="-1" selected disabled>Choisir une cat&eacute;gorie</option>
+                        <option th:each="categorie : ${categories}"
+                                th:value="${categorie.id}"
+                                th:selected="${categorie.id == categorieSelectionner}"
+                                th:text="${categorie.nom}"></option>
+                    </select>
+                </div>
+                <button type="submit" class="ui blue button">Modifier</button>
+            </form>
+        </div>
+    </div>
+
+    <div th:replace="~{/components/views/Footer}"></div>

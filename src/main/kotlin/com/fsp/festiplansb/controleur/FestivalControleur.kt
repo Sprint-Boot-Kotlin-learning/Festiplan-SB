@@ -179,4 +179,20 @@ class FestivalControleur(
 
         return "redirect:/festivals"
     }
+
+    @GetMapping("/festivals/modifier/{id}")
+    fun modifierFestival(
+        model: Model,
+        @PathVariable id: Long
+    ): String {
+
+        val festival = festivalRepository.findById(id).orElse(null)
+            ?: return "redirect:/festivals"
+
+        model["festival"] = festival
+        model["categories"] = categorieRepository.findAll()
+        model["categorieSelectionner"] = festival.categorie.id
+
+        return "festivals/modifierFestival"
+    }
 }

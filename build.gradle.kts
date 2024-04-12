@@ -32,6 +32,7 @@ dependencies {
 
     implementation("org.mindrot:jbcrypt:0.4")
 //    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.thymeleaf.extras:thymeleaf-extras-java8time:3.0.4.RELEASE")
 
 }
 
