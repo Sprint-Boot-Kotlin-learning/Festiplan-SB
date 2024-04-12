@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <div th:replace="~{/components/views/Header :: header('Créer', '')}"></div>
+    <div th:replace="~{/components/views/Header :: #entete}"></div>
+
+    <div class="ui center aligned container">
+
+        <h1>Cr&eacute;er quoi ?</h1>
+        <div class="ui buttons">
+            <a href="/festivals/creer" class="ui blue button">Festival</a>
+            <div class="or" data-text="ou"></div>
+            <a href="/spectacles/creer" class="ui green button">Spectacle</a>
+        </div>
+    </div>
+
+    <div th:replace="~{/components/views/Footer}"></div>

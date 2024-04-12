@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <div th:replace="~{/components/views/Header :: header('Créer Festival', '')}"></div>
+    <div th:replace="~{/components/views/Header :: #entete}"></div>
+
+    <!-- JS -->
+    <script th:src="@{/js/creerFestival.js}"></script>
+
+    <div class="ui container">
+        <h1>Cr&eacute;er un festival</h1>
+
+        <form class="ui form" method="post" action="/festivals/creer" id="formulaire">
+            <div class="field required">
+                <label for="nom">Nom</label>
+                <div class="field">
+                    <input id="nom" type="text" name="nom" placeholder="Le nom du festival">
+                </div>
+            </div>
+            <div class="field">
+                <label for="description">Description</label>
+                <div class="field">
+                    <textarea id="description" type="text" name="description" placeholder="Description du festival"
+                              rows="3"></textarea>
+                </div>
+            </div>
+            <div class="field">
+                <div class="two fields">
+                    <div class="field required">
+                        <label for="dateDebut">Date de début</label>
+                        <input id="dateDebut" type="date" name="dateDebut">
+                    </div>
+
+                    <div class="field required">
+                        <label for="dateFin">Date de fin</label>
+                        <input id="dateFin" type="date" name="dateFin">
+                    </div>
+                </div>
+            </div>
+            <div class="field required">
+                <label for="categorie">Catégorie</label>
+                <div class="field">
+                    <select id="categorie" name="categorie">
+                        <option value="-1" selected disabled>Choisir une cat&eacute;gorie</option>
+                        <option th:each="categorie : ${categories}"
+                                th:value="${categorie.id}"
+                                th:text="${categorie.nom}"></option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="ui button positive" tabindex="0">Cr&eacute;er</button>
+
+            <div th:if="${erreurs}" class="ui error message visible">
+                <div class="header">Erreur</div>
+                <ul>
+                    <li th:each="erreur : ${erreurs}" th:text="${erreur}"></li>
+                </ul>
+            </div>
+        </form>
+    </div>
+
+    <div th:replace="~{/components/views/Footer}"></div>

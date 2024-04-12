@@ -20,4 +20,9 @@ class Festival(
     @ManyToMany val equipeOrganisatrice: List<FestiplanUser>,
     @Id @GeneratedValue val id: Long? = null
 ) {
+
+    init {
+        require(nom.isNotBlank()) { "Le nom du festival ne doit pas être vide" }
+        require(dateDebut.isBefore(dateFin)) { "La date de fin doit être après la date de début" }
+    }
 }
