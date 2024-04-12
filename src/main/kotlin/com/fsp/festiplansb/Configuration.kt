@@ -115,7 +115,32 @@ class Configuration {
                 categorie = categorieRepository.findById(1).get()
             )
         )
-
+        festivalRepository.save(
+            Festival(
+                nom = "Festival 2",
+                description = "Description 2",
+                dateDebut = LocalDate.now(),
+                dateFin = LocalDate.now().plusDays(10),
+                scenes = sceneRepository.findAll().toList(),
+                spectacles = spectacleRepository.findAll().toList(),
+                organisateur = userRepository.findById(1).get(),
+                equipeOrganisatrice = listOf(userRepository.findById(1).get()),
+                categorie = categorieRepository.findById(2).get()
+            )
+        )
+        festivalRepository.save(
+            Festival(
+                nom = "Festival 3",
+                description = "Description 3",
+                dateDebut = LocalDate.now(),
+                dateFin = LocalDate.now().plusDays(10),
+                scenes = sceneRepository.findAll().toList(),
+                spectacles = spectacleRepository.findAll().toList(),
+                organisateur = userRepository.findById(1).get(),
+                equipeOrganisatrice = listOf(userRepository.findById(1).get()),
+                categorie = categorieRepository.findById(3).get()
+            )
+        )
 
     }
 }

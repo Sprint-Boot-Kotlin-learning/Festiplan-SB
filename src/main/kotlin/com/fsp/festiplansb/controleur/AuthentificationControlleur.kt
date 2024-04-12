@@ -132,6 +132,4 @@ class AuthentificationControlleur(
 
         return "redirect:/"
     }
-
-
 }
