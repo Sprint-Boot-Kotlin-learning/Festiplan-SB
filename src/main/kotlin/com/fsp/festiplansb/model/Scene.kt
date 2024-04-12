@@ -18,5 +18,13 @@ class Scene(
 enum class TailleScene {
     PETITE,
     MOYENNE,
-    GRANDE
+    GRANDE;
+
+    override fun toString(): String {
+        return when (this) {
+            PETITE -> "Petite"
+            MOYENNE -> "Moyenne"
+            GRANDE -> "Grande"
+        }
+    }
 }
