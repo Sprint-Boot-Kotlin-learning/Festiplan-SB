@@ -13,26 +13,40 @@
             <div class="field required">
                 <label for="nom">Nom</label>
                 <div class="field">
-                    <input id="nom" type="text" name="nom" placeholder="Le nom du festival">
+                    <input id="nom"
+                           th:value="${nom}"
+                           type="text"
+                           name="nom"
+                           placeholder="Le nom du festival">
                 </div>
             </div>
             <div class="field">
                 <label for="description">Description</label>
                 <div class="field">
-                    <textarea id="description" type="text" name="description" placeholder="Description du festival"
-                              rows="3"></textarea>
+                    <textarea id="description"
+                              th:text="${description}"
+                              type="text"
+                              name="description"
+                              placeholder="Description du festival"
+                              rows="7"></textarea>
                 </div>
             </div>
             <div class="field">
                 <div class="two fields">
                     <div class="field required">
                         <label for="dateDebut">Date de début</label>
-                        <input id="dateDebut" type="date" name="dateDebut">
+                        <input id="dateDebut"
+                               th:value="${dateDebut}"
+                               type="date"
+                               name="dateDebut">
                     </div>
 
                     <div class="field required">
                         <label for="dateFin">Date de fin</label>
-                        <input id="dateFin" type="date" name="dateFin">
+                        <input id="dateFin"
+                               th:value="${dateFin}"
+                               type="date"
+                               name="dateFin">
                     </div>
                 </div>
             </div>
@@ -43,6 +57,7 @@
                         <option value="-1" selected disabled>Choisir une cat&eacute;gorie</option>
                         <option th:each="categorie : ${categories}"
                                 th:value="${categorie.id}"
+                                th:selected="${categorie.id == categorieSelectionner}"
                                 th:text="${categorie.nom}"></option>
                     </select>
                 </div>

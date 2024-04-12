@@ -90,6 +90,13 @@ class FestivalControleur(
     ): String {
         val erreurs = mutableListOf<String>()
 
+        model["nom"] = nom
+        model["description"] = description
+        model["dateDebut"] = dateDebut
+        model["dateFin"] = dateFin
+        model["categorieSelectionner"] = categorie
+        model["categories"] = categorieRepository.findAll()
+
         //TODO remove STUB
         val user = userRepository.findUserByLogin(FestiplanUser.Username("login"))
         session.setAttribute("user", user)
@@ -101,42 +108,48 @@ class FestivalControleur(
         val categorieOptional = categorieRepository.findById(categorie)
         val categorieTrouve = if (categorieOptional.isPresent) categorieOptional.get() else null
         if (categorieTrouve == null) {
-            erreurs.add("Catégorie invalide")
+            erreurs.add("Veiller selectionner une catégorie valide")
         }
 
         val dateDebutSaisie: LocalDate? = try {
             LocalDate.parse(dateDebut)
         } catch (e: Exception) {
-            erreurs.add("Date de début invalide")
+            erreurs.add("Veiller saisir une date de début valide")
             null
         }
 
         val dateFinSaisie: LocalDate? = try {
             LocalDate.parse(dateFin)
         } catch (e: Exception) {
-            erreurs.add("Date de fin invalide")
+            erreurs.add("Veiller saisir une date de fin valide")
             null
         }
 
         if (erreurs.isNotEmpty()) {
             model["erreurs"] = erreurs
-            model["categories"] = categorieRepository.findAll()
             return "festivals/creerFestival"
         }
 
-        val festival = festivalRepository.save(
-            Festival(
-                nom = nom,
-                description = description,
-                dateDebut = dateDebutSaisie!!,
-                dateFin = dateFinSaisie!!,
-                categorie = categorieTrouve!!,
-                organisateur = user!!,
-                equipeOrganisatrice = emptyList(),
-                scenes = emptyList(),
-                spectacles = emptyList()
+        val festival = try {
+            festivalRepository.save(
+                Festival(
+                    nom = nom,
+                    description = description,
+                    dateDebut = dateDebutSaisie!!,
+                    dateFin = dateFinSaisie!!,
+                    categorie = categorieTrouve!!,
+                    organisateur = user!!,
+                    equipeOrganisatrice = emptyList(),
+                    scenes = emptyList(),
+                    spectacles = emptyList()
+                )
             )
-        )
+        } catch (e: Exception) {
+            erreurs.add(e.message ?: "Une erreur inconnue est survenue lors de la création du festival")
+            model["erreurs"] = erreurs
+
+            return "festivals/creerFestival"
+        }
 
         return "redirect:/festivals/details/${festival.id}"
     }

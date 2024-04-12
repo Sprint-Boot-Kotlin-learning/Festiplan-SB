@@ -6,6 +6,8 @@ import java.time.LocalDate
 @Entity
 class Festival(
     val nom: String,
+
+    @Column(length = 1000)
     val description: String,
     val dateDebut: LocalDate,
     val dateFin: LocalDate,
@@ -23,6 +25,7 @@ class Festival(
 
     init {
         require(nom.isNotBlank()) { "Le nom du festival ne doit pas être vide" }
-        require(dateDebut.isBefore(dateFin)) { "La date de fin doit être après la date de début" }
+        require(description.length <= 1000) { "La description du festival ne doit pas dépasser 1000 caractères" }
+        require(dateDebut.isBefore(dateFin)) { "La date de fin doit être postérieur à la date de début" }
     }
 }
