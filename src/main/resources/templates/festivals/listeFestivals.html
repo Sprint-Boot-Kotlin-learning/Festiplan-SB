@@ -2,20 +2,22 @@
 <html lang="fr">
     <div th:replace="~{/components/views/Header :: header('Liste Festival', 'listeFestival')}"></div>
     <div th:replace="~{/components/views/Header :: #entete}"></div>
-    <div th:replace="~{/components/views/Header :: #app}"></div>
 
-    <h1>Liste des festivals</h1>
-    <div class="ui grid">
-        <div th:each="festival : ${festivals}" class="four wide column">
-            <div class="ui card">
-                <div class="content">
-                    <div class="header" th:text="${festival.nom}"></div>
-                    <div class="description">
-                        <p th:text="${festival.description}"></p>
+    <div class="ui container">
+
+        <h1>Liste des festivals</h1>
+        <div class="ui grid">
+            <div th:each="festival : ${festivals}" class="four wide column">
+                <div class="ui card">
+                    <div class="content">
+                        <div class="header" th:text="${festival.nom}"></div>
+                        <div class="description">
+                            <p th:text="${festival.description}"></p>
+                        </div>
                     </div>
-                </div>
-                <div class="extra content">
-                    <a class="ui button" th:href="@{/festivals/details/{id}(id=${festival.id})}">Voir</a>
+                    <div class="extra content">
+                        <a class="ui button" th:href="@{/festivals/details/{id}(id=${festival.id})}">Voir</a>
+                    </div>
                 </div>
             </div>
         </div>
