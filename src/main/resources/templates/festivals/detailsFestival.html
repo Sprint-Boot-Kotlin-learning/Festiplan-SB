@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <div th:replace="~{/components/views/Header :: header(${festival.nom}, '')}"></div>
+    <div th:replace="~{/components/views/Header :: #entete}"></div>
+    <div th:replace="~{/components/views/Header :: #app}"></div>
+
+    <!-- JS -->
+    <script th:src="@{/js/detailFestival.js}"></script>
+
+    <div class="ui grid">
+        <div class="four wide column">
+            <h1 th:text="${festival.nom}"></h1>
+        </div>
+        <div class="eight wide column">
+            <span th:text="${festival.dateDebut}">01/02/2024</span>
+            <span> - </span>
+            <span th:text="${festival.dateFin}">02/03/2024</span>
+        </div>
+        <div class="four wide column">
+            <div class="ui label large">
+                <div th:text="${festival.categorie.nom}"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ui segment" id="context">
+        <h3 class="ui header">Description</h3>
+        <p th:text="${festival.description}"></p>
+
+        <div class="ui left rail">
+                <div class="ui segment">
+                    Left Rail Content
+
+                </div>
+        </div>
+    </div>
+
+    <h3>Organisateur</h3>
+    <div class="ui table ">
+        <table class="ui table">
+            <tbody>
+            <tr>
+                <td th:text="${festival.organisateur.getFullName()}"></td>
+                <td th:text="${festival.organisateur.email}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Sc&egrave;nes</h2>
+    <div class="iu celled table">
+        <table class="ui celled table">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Taille</th>
+                <th>Nommbre maximum de spectateur</th>
+                <th>Lieu</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="scene : ${festival.scenes}">
+                <td th:text="${scene.nom}"></td>
+                <td th:text="${scene.taille}"></td>
+                <td th:text="${scene.nbSpectateursMax + ' spectateurs'}"></td>
+                <td>
+                    Lat : <span th:text="${scene.latitude}"></span><br>
+                    Long : <span th:text="${scene.longitude}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Spectacles</h2>
+    <div class="ui celled table">
+        <table class="ui celled table">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Dur&eacute;e</th>
+                <th>Responsable</th>
+                <th>Categorie</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="spectacle : ${festival.spectacles}">
+                <td th:text="${spectacle.nom}"></td>
+                <td th:text="${spectacle.duree + 'min'}"></td>
+                <td th:text="${spectacle.responsable.getFullName()}"></td>
+                <td th:text="${spectacle.categorie.nom}"></td>
+                <td>
+                    <a class="ui button" th:href="@{/spectacles/details/{id}(id=${spectacle.id})}">Voir</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2>&Eacute;quipe organisatrice</h2>
+    <div class="ui celled table">
+        <table class="ui celled table">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Adresse mail</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="membre : ${festival.equipeOrganisatrice}">
+                <td th:text="${membre.getFullName()}"></td>
+                <td th:text="${membre.email}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div th:replace="~{/components/views/Footer}"></div>
