@@ -30,6 +30,26 @@ class Configuration {
                 email = EmailAddress("test@test.fr")
             )
         )
+        userRepository.save(
+            FestiplanUser(
+                id = 2L,
+                firstname = "Jean",
+                lastname = "Dupont",
+                login = Username("login2"),
+                password = Password("mdp12345"),
+                email = EmailAddress("jean.dupond@gmail.fr")
+            )
+        )
+        userRepository.save(
+            FestiplanUser(
+                id = 3L,
+                firstname = "Hubert",
+                lastname = "Delaclasse",
+                login = Username("hubert"),
+                password = Password("hubert12$"),
+                email = EmailAddress("hubert.delaclasse@iut-rodez.fr")
+            )
+        )
 
         categorieRepository.save(Categorie(id = 1L, nom = "Concert"))
         categorieRepository.save(Categorie(id = 2L, nom = "Piéce de thèatre"))
@@ -60,6 +80,24 @@ class Configuration {
                 nom = "Scene 3",
                 taille = TailleScene.PETITE,
                 nbSpectateursMax = 100,
+                latitude = 45.0,
+                longitude = 45.0
+            )
+        )
+        sceneRepository.save(
+            Scene(
+                nom = "Scene 4",
+                taille = TailleScene.GRANDE,
+                nbSpectateursMax = 1000,
+                latitude = 45.0,
+                longitude = 45.0
+            )
+        )
+        sceneRepository.save(
+            Scene(
+                nom = "Scene 5",
+                taille = TailleScene.MOYENNE,
+                nbSpectateursMax = 500,
                 latitude = 45.0,
                 longitude = 45.0
             )
@@ -124,7 +162,7 @@ class Configuration {
                 scenes = sceneRepository.findAll().toList(),
                 spectacles = spectacleRepository.findAll().toList(),
                 organisateur = userRepository.findById(1).get(),
-                equipeOrganisatrice = listOf(userRepository.findById(1).get()),
+                equipeOrganisatrice = userRepository.findAll().toList(),
                 categorie = categorieRepository.findById(2).get()
             )
         )
