@@ -21,6 +21,10 @@
                 </div>
             </div>
         </div>
+        <div th:if="${#lists.isEmpty(festivals)}" class="ui center aligned segment">
+            <h4>Aucun festival n'est enregistr&eacute;</h4>
+        </div>
+
     </div>
 
     <div th:replace="~{/components/views/Footer}"></div>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <div th:replace="~{/components/views/Header :: header('Supprimer', 'festivals/supprimerFestival')}"></div>
+    <div th:replace="~{/components/views/Header :: #entete}"></div>
+
+    <div class="ui center container">
+        <h1>Supprimer &quot;<span th:text="${festival.nom}">Festival</span>&quot; ?</h1>
+
+        <div class="ui center segment">
+            <h2>&Ecirc;tes-vous s&ucirc;r de vouloir supprimer le festival &quot;<span
+                    th:text="${festival.nom}">Festival</span>&quot; ?</h2>
+            <div class="ui two column very relaxed grid">
+                <div class="column">
+                    <form th:action="@{/festivals/supprimer/{id}(id=${festival.id})}" method="post">
+                        <button type="submit" value="Supprimer" class="ui red button">
+                            <i class="trash icon white"></i>Oui Supprimer
+                        </button>
+                    </form>
+                </div>
+                <div class="column">
+                    <a class="ui green button" th:href="@{/festivals/details/{id}(id=${festival.id})}">
+                        <i class="arrow left icon white"></i>Non Garder
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="~{/components/views/Footer}"></div>

@@ -153,4 +153,30 @@ class FestivalControleur(
 
         return "redirect:/festivals/details/${festival.id}"
     }
+
+    @GetMapping("/festivals/supprimer/{id}")
+    fun supprimerFestival(
+        model: Model,
+        @PathVariable id: Long
+    ): String {
+
+        model["festival"] = festivalRepository.findById(id).orElse(null)
+            ?: return "redirect:/festivals"
+
+        return "festivals/supprimerFestival"
+    }
+
+    @PostMapping("/festivals/supprimer/{id}")
+    fun supprimerFestivalPost(
+        model: Model,
+        @PathVariable id: Long
+    ): String {
+
+        val festival = festivalRepository.findById(id).orElse(null)
+            ?: return "redirect:/festivals"
+
+        festivalRepository.delete(festival)
+
+        return "redirect:/festivals"
+    }
 }
