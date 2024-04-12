@@ -17,7 +17,7 @@ class FestiplanUser(
 ) {
 
     companion object {
-        const val LOGIN_ALREADY_USED_ERROR: String = "Un utilisateur utilise déjà ce nom d'utilisateur."
+        const val LOGIN_ALREADY_USED_ERROR: String = "Un utilisateur utilise déjà ce nom."
 
         const val ACCOUNT_DOES_NOT_EXIST_ERROR: String = "Ce compte n'existe plus."
     }

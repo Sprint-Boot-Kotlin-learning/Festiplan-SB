@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam
  * - POST /createAccount : Traite le formulaire de création de compte
  */
 @Controller
-class LoginControlleur(
+class AuthentificationControlleur(
     val userRepository: UserRepository,
     val session: HttpSession
 ) {
@@ -83,23 +83,23 @@ class LoginControlleur(
 
     @PostMapping("/createAccount")
     fun createAccountPost(
-        @RequestParam("firstname") firstname: String?,
-        @RequestParam("lastname") lastname: String?,
+        @RequestParam("prenom") prenom: String?,
+        @RequestParam("nom") nom: String?,
         @RequestParam("username") username: String?,
         @RequestParam("email") email: String?,
         @RequestParam("password") password: String?,
         @RequestParam("password2") password2: String?,
         model: Model
     ): String {
-        model["firstname"] = firstname
-        model["lastname"] = lastname
+        model["prenom"] = prenom
+        model["nom"] = nom
         model["username"] = username
         model["email"] = email
 
         var erreurs: MutableList<String> = mutableListOf()
 
-        if (firstname.isNullOrEmpty()) erreurs.add("Le prénom est vide")
-        if (lastname.isNullOrEmpty()) erreurs.add("Le nom est vide")
+        if (prenom.isNullOrEmpty()) erreurs.add("Le prénom est vide")
+        if (nom.isNullOrEmpty()) erreurs.add("Le nom est vide")
         if (username.isNullOrEmpty()) erreurs.add("Le nom d'utilisateur est vide")
         if (email.isNullOrEmpty()) erreurs.add("L'adresse email est vide")
         if (password.isNullOrEmpty()) erreurs.add("Le mot de passe est vide")
@@ -119,8 +119,8 @@ class LoginControlleur(
         }
 
         val user = FestiplanUser(
-            firstname = firstname!!,
-            lastname = lastname!!,
+            firstname = prenom!!,
+            lastname = nom!!,
             login = FestiplanUser.Username(username),
             email = FestiplanUser.EmailAddress(email),
             password = FestiplanUser.Password(password!!)
