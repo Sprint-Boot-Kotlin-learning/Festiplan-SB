@@ -1,49 +1,52 @@
 <!DOCTYPE html>
 <html lang="fr">
     <div th:replace="~{/components/views/Header :: header('Connexion', 'login')}"></div>
-    <div th:replace="~{/components/views/Header :: #app}"></div>
 
-    <h1>Se connecter</h1>
 
-    <form class="ui large form" action="login" method="post">
-        <div class="ui stacked segment">
-            <div class="field">
-                <div class="ui left icon input">
-                    <i class="user icon"></i>
-                    <input type="text"
-                           name="username"
-                           placeholder="Nom d'utilisateur"
-                           th:value="${username}"
-                    >
+    <div id="app" class="ui container">
+        <h1>Se connecter</h1>
+
+        <form class="ui large form" action="login" method="post">
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text"
+                               name="username"
+                               placeholder="Nom d'utilisateur"
+                               th:value="${username}"
+                        >
+                    </div>
                 </div>
-            </div>
-            <div class="field">
-                <div class="ui left icon input">
-                    <i class="lock icon"></i>
-                    <input type="password"
-                           name="password"
-                           placeholder="Mot de passe"
-                           th:value="${password}"
-                    >
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password"
+                               name="password"
+                               placeholder="Mot de passe"
+                               th:value="${password}"
+                        >
+                    </div>
                 </div>
+                <button class="ui fluid large submit button" type="submit">Se connecter</button>
             </div>
-            <button class="ui fluid large submit button" type="submit">Se connecter</button>
-        </div>
 
-        <div th:if="${erreur}" class="ui error message visible">
-            <div class="header">Erreur</div>
-            <p th:text="${erreur}"></p>
-        </div>
+            <div th:if="${erreur}" class="ui error message visible">
+                <div class="header">Erreur</div>
+                <p th:text="${erreur}"></p>
+            </div>
 
-    </form>
+        </form>
 
-    <form action="/createAccount" method="get" id="createCompte">
-        <button class="ui button">
-            <i class="icons">
-                <i class="icon user"></i>
-                <i class="inverted right corner icon add"></i>
-            </i>
-            Cr&eacute;er un compte
-        </button>
-    </form>
+        <form action="/createAccount" method="get" id="createCompte">
+            <button class="ui button">
+                <i class="icons">
+                    <i class="icon user"></i>
+                    <i class="inverted right corner icon add"></i>
+                </i>
+                Cr&eacute;er un compte
+            </button>
+        </form>
+
+    </div>
     <div th:replace="~{/components/views/Footer}"></div>
