@@ -1,12 +1,65 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <div th:replace="/components/views/Header :: header('Accueil', '')"></div>
-    <div th:replace="/components/views/Header :: #entete"></div>
-    <div th:replace="/components/views/Header :: #app"></div>
+    <div th:replace="~{/components/views/Header :: header('Accueil', '')}"></div>
+    <div th:replace="~{/components/views/Header :: #entete}"></div>
+    <div th:replace="~{/components/views/Header :: #app}"></div>
 
-    <div class="ui container">
-        <h1>Accueil</h1>
-        <h2>Bienvue <span th:text="${user.getFullName()}"></span></h2>
+    <h1>Accueil</h1>
+    <h2>Bienvue <span th:text="${user.getFullName()}"></span></h2>
+
+    <div class="ui grid">
+        <div class="five wide column">
+            <div class="ui card">
+                <div class="content">
+                    <div class="header">Festivals</div>
+                    <div class="description">
+                        <p>Consulter la liste des festivals</p>
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a class="ui button" th:href="@{/festivals}">Voir</a>
+                </div>
+            </div>
+        </div>
+        <div class="five wide column">
+            <div class="ui card">
+                <div class="content">
+                    <div class="header">Spectacles</div>
+                    <div class="description">
+                        <p>Consulter la liste des spectacles</p>
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a class="ui button" th:href="@{/spectacles}">Voir</a>
+                </div>
+            </div>
+        </div>
+        <div class="six wide column">
+            <div class="ui card">
+                <div class="content">
+                    <div class="header">Créer</div>
+                    <div class="description">
+                        <p>Créer un festival ou un spectacle</p>
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a class="ui button" th:href="@{/creer}">Créer</a>
+                </div>
+            </div>
+        </div>
+        <div class="sixteen wide column">
+            <div class="ui card">
+                <div class="content">
+                    <div class="header">Rechercher</div>
+                    <div class="description">
+                        <p>Rechercher un festival ou un spectacle</p>
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a class="ui button" th:href="@{/rechercher}">Rechercher</a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div th:replace="/components/views/Footer"></div>
+    <div th:replace="~{/components/views/Footer}"></div>
