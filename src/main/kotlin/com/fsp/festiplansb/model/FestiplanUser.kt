@@ -70,6 +70,10 @@ class FestiplanUser(
                 )
             }
         }
+
+        override fun toString(): String {
+            return address?: "Pas d'adresse email."
+        }
     }
 
     @Embeddable
